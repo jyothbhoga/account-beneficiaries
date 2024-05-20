@@ -2,9 +2,11 @@ import React, { memo, useEffect, useState } from "react";
 import {
   AddEditBeneficiaryWrapper,
   BeneficiariesContainer,
+  BeneficiaryContainer,
   Button,
   Footer,
   Header,
+  InputContainer,
 } from "../../style";
 import { connect } from "react-redux";
 import {
@@ -95,62 +97,82 @@ const AddEditBeneficiary = memo((props) => {
   };
 
   return (
-    <AddEditBeneficiaryWrapper>
-      <Header>
-        <Button onClick={() => navigate(`/${config.enumStaticUrls.home}`)}>
-          Manage Beneficiaries
-        </Button>
-      </Header>
-      <BeneficiariesContainer>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={details.name}
-            onChange={(e) => handleChange(e, "name")}
-            disabled={isEdit}
-          />
-        </label>
-        <label>
-          Bank Name:
-          <input
-            type="text"
-            name="bank-name"
-            value={details.bankName}
-            onChange={(e) => handleChange(e, "bankName")}
-          />
-        </label>
-        <label>
-          Account Number:
-          <input
-            type="text"
-            name="account-number"
-            value={details.accountNumber}
-            onChange={(e) => handleChange(e, "accountNumber")}
-          />
-        </label>
-        <label>
-          Select Account Type:
-          <select
-            onChange={(e) => handleChange(e, "accountType")}
-            value={details.accountType}
-            disabled={isEdit}
+    <BeneficiaryContainer>
+      <AddEditBeneficiaryWrapper>
+        <Header>
+          <Button
+            className="header-btn"
+            onClick={() => navigate(`/${config.enumStaticUrls.home}`)}
           >
-            {config.enumAccountTypes.map((acc) => (
-              <option key={acc.value} value={acc.value}>
-                {acc.text}
-              </option>
-            ))}
-          </select>
-        </label>
-        <Footer>
-          <Button className={isValidated ? "" : "disabled"} onClick={onSubmit}>
-            Save Beneficiary
+            Manage Beneficiaries
           </Button>
-        </Footer>
-      </BeneficiariesContainer>
-    </AddEditBeneficiaryWrapper>
+        </Header>
+        <BeneficiariesContainer className="add">
+          <InputContainer>
+            <label>
+              Name:
+              <br />
+              <input
+                type="text"
+                name="name"
+                value={details.name}
+                onChange={(e) => handleChange(e, "name")}
+                disabled={isEdit}
+              />
+            </label>
+          </InputContainer>
+          <InputContainer>
+            <label>
+              Bank Name:
+              <br />
+              <input
+                type="text"
+                name="bank-name"
+                value={details.bankName}
+                onChange={(e) => handleChange(e, "bankName")}
+              />
+            </label>
+          </InputContainer>
+          <InputContainer>
+            <label>
+              Account Number:
+              <br />
+              <input
+                type="text"
+                name="account-number"
+                value={details.accountNumber}
+                onChange={(e) => handleChange(e, "accountNumber")}
+              />
+            </label>
+          </InputContainer>
+          <InputContainer>
+            <label>
+              Select Account Type:
+              <br />
+              <select
+                onChange={(e) => handleChange(e, "accountType")}
+                value={details.accountType}
+                disabled={isEdit}
+              >
+                {config.enumAccountTypes.map((acc) => (
+                  <option key={acc.value} value={acc.value}>
+                    {acc.text}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </InputContainer>
+          <Footer>
+            <Button
+              className={isValidated ? "" : "disabled"}
+              onClick={onSubmit}
+            >
+              Save Beneficiary
+            </Button>
+          </Footer>
+        </BeneficiariesContainer>
+      </AddEditBeneficiaryWrapper>
+    </BeneficiaryContainer>
   );
 });
 

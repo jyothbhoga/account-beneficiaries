@@ -11,12 +11,13 @@ import { fetchBeneficiaries, showToast } from "../../redux/action";
 import { useNavigate } from "react-router-dom";
 import config from "../../common/config";
 import toast, { Toaster } from "react-hot-toast";
+import Popup from "../../common/Popup";
 
 const ManageBeneficiaries = memo((props) => {
   const { fetchBeneficiaries, beneficiariesData, objToast, showToast } = props;
   useEffect(() => {
     !beneficiariesData?.data?.length && fetchBeneficiaries();
-    console.log(beneficiariesData.data)
+    console.log(beneficiariesData.data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,7 +34,10 @@ const ManageBeneficiaries = memo((props) => {
   return beneficiariesData?.data?.length ? (
     <BeneficiaryContainer>
       <Header>
-        <Button onClick={() => navigate(`/${config.enumStaticUrls.add}`)}>
+        <Button
+          className="header-btn"
+          onClick={() => navigate(`/${config.enumStaticUrls.add}`)}
+        >
           Add Beneficiaries
         </Button>
       </Header>

@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import {
   BeneficiariesContainer,
+  BeneficiaryContainer,
   BeneficiaryContent,
   Button,
   Header,
@@ -36,30 +37,32 @@ const ViewBenificiary = memo((props) => {
   }, [beneficiaryId, beneficiariesData]);
 
   return currBeneficiary ? (
-    <ViewBeneficiaryWrapper>
-      <Header>
-        <Button
-          onClick={() =>
-            navigate(`/${config.enumStaticUrls.edit}/${beneficiaryId}`)
-          }
-        >
-          Edit
-        </Button>
-      </Header>
-      <BeneficiariesContainer>
-        <BeneficiaryContent>Name: {currBeneficiary.name}</BeneficiaryContent>
-        <BeneficiaryContent>
-          Bank Name: {currBeneficiary.bankName}
-        </BeneficiaryContent>
-        <BeneficiaryContent>
-          Account Number: {currBeneficiary.accountNumber}
-        </BeneficiaryContent>
-        <BeneficiaryContent>
-          Account Type: {currBeneficiary.accountType}
-        </BeneficiaryContent>
-        <BeneficiaryContent></BeneficiaryContent>
-      </BeneficiariesContainer>
-    </ViewBeneficiaryWrapper>
+    <BeneficiaryContainer>
+      <ViewBeneficiaryWrapper>
+        <Header>
+          <Button
+            onClick={() =>
+              navigate(`/${config.enumStaticUrls.edit}/${beneficiaryId}`)
+            }
+          >
+            Edit
+          </Button>
+        </Header>
+        <BeneficiariesContainer>
+          <BeneficiaryContent>Name: {currBeneficiary.name}</BeneficiaryContent>
+          <BeneficiaryContent>
+            Bank Name: {currBeneficiary.bankName}
+          </BeneficiaryContent>
+          <BeneficiaryContent>
+            Account Number: {currBeneficiary.accountNumber}
+          </BeneficiaryContent>
+          <BeneficiaryContent>
+            Account Type: {currBeneficiary.accountType}
+          </BeneficiaryContent>
+          <BeneficiaryContent></BeneficiaryContent>
+        </BeneficiariesContainer>
+      </ViewBeneficiaryWrapper>
+    </BeneficiaryContainer>
   ) : null;
 });
 const mapStateToProps = (state) => {

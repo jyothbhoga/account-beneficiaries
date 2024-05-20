@@ -23,8 +23,8 @@ const BeneficiaryCard = memo((props) => {
     <BeneficiaryCardWrapper>
       {isHeader ? (
         <>
-          <CardContent>Beneficiary Name</CardContent>
-          <CardContent className="images-container">Actions</CardContent>
+          <CardContent className="header">Beneficiary Name</CardContent>
+          <CardContent className="header">Actions</CardContent>
         </>
       ) : (
         <>
