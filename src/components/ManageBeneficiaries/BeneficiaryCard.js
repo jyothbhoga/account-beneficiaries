@@ -2,13 +2,23 @@ import React, { memo } from "react";
 import { BeneficiaryCardWrapper, CardContent } from "../../style";
 import { useNavigate } from "react-router-dom";
 import config from "../../common/config";
-import { deleteBeneficiary, showToast } from "../../redux/action";
+import { deleteBeneficiary, showPopup, showToast } from "../../redux/action";
 import { connect } from "react-redux";
 
 const BeneficiaryCard = memo((props) => {
   const { data, isHeader } = props;
   const navigate = useNavigate();
-  const { deleteBeneficiary, showToast } = props;
+  const { deleteBeneficiary, showToast, showPopup } = props;
+
+  const openDeleteConfirmationPopup = () => {
+    showPopup({
+      show: true,
+      msg: "Are you sure you want to delete this beneficiary?",
+      header: "Delete Beneficiary",
+      action: onDeleteBen,
+      primaryText: "Yes",
+    });
+  };
 
   const onDeleteBen = () => {
     deleteBeneficiary(data.id);
@@ -16,6 +26,13 @@ const BeneficiaryCard = memo((props) => {
       msg: "Beneficiary Deleted successfully",
       show: true,
       id: "delete",
+    });
+    showPopup({
+      show: false,
+      msg: "",
+      header: "",
+      action: null,
+      primaryText: "",
     });
   };
 
@@ -50,7 +67,7 @@ const BeneficiaryCard = memo((props) => {
               className="img"
               alt="delete"
               src="/assets/images/delete.svg"
-              onClick={onDeleteBen}
+              onClick={openDeleteConfirmationPopup}
             />
           </CardContent>
         </>
@@ -69,6 +86,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteBeneficiary: (payload) => dispatch(deleteBeneficiary(payload)),
     showToast: (payload) => dispatch(showToast(payload)),
+    showPopup: (payload) => dispatch(showPopup(payload)),
   };
 };
 

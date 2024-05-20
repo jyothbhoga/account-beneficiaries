@@ -3,7 +3,7 @@ import {
   OBJ_DELETE_BENEFICIARY,
   OBJ_FETCH_BENEFICIARIES,
   SHOW_TOAST,
-  TOGGLE_LOGIN_POPUP,
+  TOGGLE_POPUP,
 } from "../types";
 import beneficiaries from "../../mockData/benefeciaries.json";
 
@@ -28,16 +28,16 @@ export const deleteBeneficiary = (payload) => {
   };
 };
 
-export const toggleLoginPopup = (payload) => {
+export const showToast = (payload) => {
   return {
-    type: TOGGLE_LOGIN_POPUP,
+    type: SHOW_TOAST,
     payload: payload,
   };
 };
 
-export const showToast = (payload) => {
+export const showPopup = (payload) => {
   return {
-    type: SHOW_TOAST,
+    type: TOGGLE_POPUP,
     payload: payload,
   };
 };

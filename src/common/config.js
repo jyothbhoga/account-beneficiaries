@@ -22,6 +22,21 @@ config.enumAccountTypes = [
   { text: "Fixed Deposit Account", value: "fix-dep" },
 ];
 
+config.enumAccountMapping = {
+  savings: {
+    text: "Savings Account",
+  },
+  current: {
+    text: "Current Account",
+  },
+  "rec-dep": {
+    text: "Recurring Deposit Account",
+  },
+  "fix-dep": {
+    text: "Fixed Deposit Account",
+  },
+};
+
 config.tooltipTimeout = 5000;
 config.redirectDefault = `${config.URL_BASE}${config.enumStaticUrls.home}`;
 config.BrowserDetect = {

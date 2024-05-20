@@ -12,10 +12,12 @@ import { connect } from "react-redux";
 import {
   addEditBeneficiary,
   fetchBeneficiaries,
+  showPopup,
   showToast,
 } from "../../redux/action";
 import config from "../../common/config";
 import { useLocation, useNavigate } from "react-router-dom";
+import Popup from "../../common/Popup";
 
 const AddEditBeneficiary = memo((props) => {
   const {
@@ -23,6 +25,7 @@ const AddEditBeneficiary = memo((props) => {
     fetchBeneficiaries,
     beneficiariesData,
     showToast,
+    showPopup,
   } = props;
   const location = useLocation();
   const navigate = useNavigate();
@@ -81,12 +84,37 @@ const AddEditBeneficiary = memo((props) => {
   }, [details]);
 
   const handleChange = (e, field) => {
-    setDetails({ ...details, [field]: e.target.value });
+    setDetails({
+      ...details,
+      [field]:
+        field === "accountNumber"
+          ? e.target.value.replace(/\D/g, "")
+          : e.target.value,
+    });
+  };
+
+  const openConfirmationPopup = () => {
+    showPopup({
+      show: true,
+      msg: `Are you sure you want to ${
+        isEdit ? "edit" : "add"
+      } this beneficiary?`,
+      header: "Delete Beneficiary",
+      action: onSubmit,
+      primaryText: isEdit ? "Save" : "Add",
+    });
   };
 
   const onSubmit = () => {
     const addedBeneficiary = addEditBeneficiary(details);
     if (addedBeneficiary) {
+      showPopup({
+        show: false,
+        msg: "",
+        header: "",
+        action: null,
+        primaryText: "",
+      });
       navigate(`/${config.enumStaticUrls.home}`);
       showToast({
         msg: `Beneficiary ${isEdit ? "edited" : "added"} successfully`,
@@ -165,13 +193,14 @@ const AddEditBeneficiary = memo((props) => {
           <Footer>
             <Button
               className={isValidated ? "" : "disabled"}
-              onClick={onSubmit}
+              onClick={openConfirmationPopup}
             >
               Save Beneficiary
             </Button>
           </Footer>
         </BeneficiariesContainer>
       </AddEditBeneficiaryWrapper>
+      <Popup />
     </BeneficiaryContainer>
   );
 });
@@ -187,6 +216,7 @@ const mapDispatchToProps = (dispatch) => {
     addEditBeneficiary: (payload) => dispatch(addEditBeneficiary(payload)),
     fetchBeneficiaries: (payload) => dispatch(fetchBeneficiaries(payload)),
     showToast: (payload) => dispatch(showToast(payload)),
+    showPopup: (payload) => dispatch(showPopup(payload)),
   };
 };
 

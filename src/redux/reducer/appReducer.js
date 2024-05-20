@@ -3,6 +3,7 @@ import {
   OBJ_FETCH_BENEFICIARIES,
   OBJ_DELETE_BENEFICIARY,
   SHOW_TOAST,
+  TOGGLE_POPUP,
 } from "../types";
 const initialState = {
   beneficiariesData: {
@@ -12,6 +13,13 @@ const initialState = {
     msg: "",
     show: false,
     id: "",
+  },
+  objPopup: {
+    msg: "",
+    header: "",
+    show: false,
+    action: null,
+    primaryText: "",
   },
 };
 
@@ -75,6 +83,20 @@ const appReducer = (state = initialState, action) => {
           msg: payload.msg,
           show: payload.show,
           id: payload.id,
+        },
+      };
+    }
+
+    //Show Toast msgs
+    case TOGGLE_POPUP: {
+      return {
+        ...state,
+        objPopup: {
+          msg: payload.msg,
+          header: payload.header,
+          action: payload.action,
+          show: payload.show,
+          primaryText: payload.primaryText,
         },
       };
     }
