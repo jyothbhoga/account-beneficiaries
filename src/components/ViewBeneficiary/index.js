@@ -32,6 +32,7 @@ const ViewBenificiary = memo((props) => {
       );
       setCurrBeneficiary(currBenefT);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return currBeneficiary ? (
