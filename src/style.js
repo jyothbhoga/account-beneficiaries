@@ -116,7 +116,7 @@ export const AddEditBeneficiaryWrapper = styled.div`
 
 export const BeneficiariesDetailsContianer = styled.div`
   display: block;
-  min-width: 260px;
+  width: 260px;
   margin: auto;
 `;
 
