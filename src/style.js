@@ -119,7 +119,12 @@ export const BeneficiaryContent = styled.div`
   margin-bottom: 20px;
 `;
 
-export const NoBeneficiaries = styled.span``;
+export const NoBeneficiariesContainer = styled.div`
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export const PopupHeader = styled.div`
   height: 75px;
   font-size: 28px;

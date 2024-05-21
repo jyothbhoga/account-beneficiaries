@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { BeneficiariesContainer, NoBeneficiaries } from "../../style";
+import { BeneficiariesContainer, NoBeneficiariesContainer } from "../../style";
 import BeneficiaryCard from "./BeneficiaryCard";
 import { connect } from "react-redux";
 import { fetchBeneficiaries } from "../../redux/action";
@@ -14,7 +14,9 @@ const BeneficiariesList = memo((props) => {
           return <BeneficiaryCard data={ben} isHeader={false} key={ben.id} />;
         })
       ) : (
-        <NoBeneficiaries>No benefeciaries added yet</NoBeneficiaries>
+        <NoBeneficiariesContainer>
+          <p>No benefeciaries added yet</p>
+        </NoBeneficiariesContainer>
       )}
     </BeneficiariesContainer>
   );

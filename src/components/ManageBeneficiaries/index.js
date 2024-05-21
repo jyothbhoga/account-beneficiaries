@@ -37,7 +37,7 @@ const ManageBeneficiaries = memo((props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [objToast]);
 
-  return beneficiariesData?.data?.length ? (
+  return (
     <BeneficiaryContainer>
       <Header>
         <Button
@@ -53,7 +53,7 @@ const ManageBeneficiaries = memo((props) => {
       <Toaster />
       {objPopup.show ? <Popup /> : null}
     </BeneficiaryContainer>
-  ) : null;
+  );
 });
 
 const mapStateToProps = (state) => {
