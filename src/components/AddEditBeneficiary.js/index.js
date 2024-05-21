@@ -7,6 +7,7 @@ import {
   Footer,
   Header,
   InputContainer,
+  ValidationMsg,
 } from "../../style";
 import { connect } from "react-redux";
 import {
@@ -67,17 +68,24 @@ const AddEditBeneficiary = memo((props) => {
 
       fetchAndSetDetails();
     } else {
-      setDetails({ ...details, id: beneficiariesData.data.length + 1 });
+      const newId =
+        beneficiariesData.data.length > 0
+          ? beneficiariesData.data[beneficiariesData.data.length - 1].id + 1
+          : 1;
+      setDetails((prev) => ({
+        ...prev,
+        id: newId,
+      }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (
-      details.name.length > 3 &&
-      details.bankName.length > 3 &&
-      details.accountType.length > 3 &&
-      details.accountNumber.length > 3
+      details.name.length > config.enumValidationChar &&
+      details.bankName.length > config.enumValidationChar &&
+      details.accountType.length > config.enumValidationChar &&
+      details.accountNumber.length > config.enumValidationChar
     ) {
       setValidated(true);
     } else setValidated(false);
@@ -129,16 +137,16 @@ const AddEditBeneficiary = memo((props) => {
       <AddEditBeneficiaryWrapper>
         <Header>
           <Button
-            className="header-btn"
+            className="header-btn left"
             onClick={() => navigate(`/${config.enumStaticUrls.home}`)}
           >
-            Manage Beneficiaries
+            Back
           </Button>
         </Header>
         <BeneficiariesContainer className="add">
           <InputContainer>
             <label>
-              Name:
+              Name: <ValidationMsg>(Min 3 char)</ValidationMsg>
               <br />
               <input
                 type="text"
@@ -151,7 +159,7 @@ const AddEditBeneficiary = memo((props) => {
           </InputContainer>
           <InputContainer>
             <label>
-              Bank Name:
+              Bank Name: <ValidationMsg>(Min 3 char)</ValidationMsg>
               <br />
               <input
                 type="text"
@@ -163,7 +171,7 @@ const AddEditBeneficiary = memo((props) => {
           </InputContainer>
           <InputContainer>
             <label>
-              Account Number:
+              Account Number: <ValidationMsg>(Min 3 char)</ValidationMsg>
               <br />
               <input
                 type="text"
@@ -175,7 +183,8 @@ const AddEditBeneficiary = memo((props) => {
           </InputContainer>
           <InputContainer>
             <label>
-              Select Account Type:
+              Select Account Type:{" "}
+              <ValidationMsg>(Select any one)</ValidationMsg>
               <br />
               <select
                 onChange={(e) => handleChange(e, "accountType")}

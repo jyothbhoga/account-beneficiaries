@@ -14,15 +14,16 @@ export const Button = styled.div`
   height: max-content;
   overflow: hidden;
   color: white;
-  background-color: blue;
+  background-color: #0077c5;
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   padding: 8px 12px;
   justify-content: center;
   align-items: center;
   float: right;
+  border-radius: 4px;
 
   &.header-btn {
     margin-top: 10px;
@@ -33,6 +34,16 @@ export const Button = styled.div`
     pointer-events: none;
     background-color: #cccccc;
     color: #666666;
+  }
+
+  &.secondary {
+    background-color: #fff;
+    color: #0077c5;
+    border: 1px solid #0077c5;s
+  }
+
+  &.left {
+    float: left;
   }
 `;
 
@@ -61,6 +72,10 @@ export const BeneficiariesContainer = styled.div`
 
 export const InputContainer = styled.div`
   flex: 50%;
+`;
+
+export const ValidationMsg = styled.span`
+  font-size: 10px;
 `;
 
 export const BeneficiaryCardWrapper = styled.div`
@@ -104,7 +119,7 @@ export const BeneficiaryContent = styled.div`
   margin-bottom: 20px;
 `;
 
-export const NoBenefeciaries = styled.span``;
+export const NoBeneficiaries = styled.span``;
 export const PopupHeader = styled.div`
   height: 75px;
   font-size: 28px;
@@ -127,6 +142,7 @@ export const PopupContainer = styled.div`
   width: 500px;
   background: white;
   border: 1px solid #ccc;
+  border-radius: 4px;
   transition: 1.1s ease-out;
   box-shadow: -2rem 2rem 2rem rgba(0, 0, 0, 0.2);
   filter: blur(0);
@@ -150,4 +166,22 @@ export const PopupContainer = styled.div`
     transform: scale(0.33);
     box-shadow: 1rem 0 0 rgba(0, 0, 0, 0.2);
   }
+`;
+export const TooltipContainer = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &:hover .tooltipText {
+    display: block;
+  }
+`;
+
+export const TooltipText = styled.div`
+  position: absolute;
+  display: none;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 6px;
 `;

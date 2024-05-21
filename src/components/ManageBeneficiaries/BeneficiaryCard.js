@@ -1,5 +1,10 @@
 import React, { memo } from "react";
-import { BeneficiaryCardWrapper, CardContent } from "../../style";
+import {
+  BeneficiaryCardWrapper,
+  CardContent,
+  TooltipContainer,
+  TooltipText,
+} from "../../style";
 import { useNavigate } from "react-router-dom";
 import config from "../../common/config";
 import { deleteBeneficiary, showPopup, showToast } from "../../redux/action";
@@ -47,28 +52,37 @@ const BeneficiaryCard = memo((props) => {
         <>
           <CardContent>{data.name}</CardContent>
           <CardContent className="images-container">
-            <img
-              className="img"
-              alt="view"
-              src="/assets/images/view.svg"
-              onClick={() =>
-                navigate(`/${config.enumStaticUrls.view}/${data.id}`)
-              }
-            />
-            <img
-              className="img"
-              alt="edit"
-              src="/assets/images/edit.svg"
-              onClick={() =>
-                navigate(`/${config.enumStaticUrls.edit}/${data.id}`)
-              }
-            />
-            <img
-              className="img"
-              alt="delete"
-              src="/assets/images/delete.svg"
-              onClick={openDeleteConfirmationPopup}
-            />
+            <TooltipContainer>
+              <img
+                className="img"
+                alt="view"
+                src={`${config.IMG_BASE}view.svg`}
+                onClick={() =>
+                  navigate(`/${config.enumStaticUrls.view}/${data.id}`)
+                }
+              />
+              <TooltipText className="tooltipText">View</TooltipText>
+            </TooltipContainer>
+            <TooltipContainer>
+              <img
+                className="img"
+                alt="edit"
+                src={`${config.IMG_BASE}edit.svg`}
+                onClick={() =>
+                  navigate(`/${config.enumStaticUrls.edit}/${data.id}`)
+                }
+              />
+              <TooltipText className="tooltipText">Edit</TooltipText>
+            </TooltipContainer>
+            <TooltipContainer>
+              <img
+                className="img"
+                alt="delete"
+                src={`${config.IMG_BASE}delete.svg`}
+                onClick={openDeleteConfirmationPopup}
+              />
+              <TooltipText className="tooltipText">Delete</TooltipText>
+            </TooltipContainer>
           </CardContent>
         </>
       )}

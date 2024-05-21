@@ -87,7 +87,7 @@ const appReducer = (state = initialState, action) => {
       };
     }
 
-    //Show Toast msgs
+    //Show Popup
     case TOGGLE_POPUP: {
       return {
         ...state,
