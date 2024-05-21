@@ -114,9 +114,18 @@ export const AddEditBeneficiaryWrapper = styled.div`
   display: block;
 `;
 
+export const BeneficiariesDetailsContianer = styled.div`
+  display: block;
+  min-width: 260px;
+  margin: auto;
+`;
+
 export const BeneficiaryContent = styled.div`
-  text-align: center;
   margin-bottom: 20px;
+`;
+
+export const BeneficiaryContentKey = styled.span`
+  font-weight: bold;
 `;
 
 export const NoBeneficiariesContainer = styled.div`

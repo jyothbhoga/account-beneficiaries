@@ -1,7 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
 import {
   BeneficiariesContainer,
+  BeneficiariesDetailsContianer,
   BeneficiaryContent,
+  BeneficiaryContentKey,
   Button,
   Header,
   ViewBeneficiaryWrapper,
@@ -54,18 +56,24 @@ const ViewBenificiary = memo((props) => {
             Edit
           </Button>
         </Header>
-        <BeneficiaryContent>Name: {currBeneficiary.name}</BeneficiaryContent>
-        <BeneficiaryContent>
-          Bank Name: {currBeneficiary.bankName}
-        </BeneficiaryContent>
-        <BeneficiaryContent>
-          Account Number: {currBeneficiary.accountNumber}
-        </BeneficiaryContent>
-        <BeneficiaryContent>
-          Account Type:{" "}
-          {config.enumAccountMapping[currBeneficiary.accountType].text}
-        </BeneficiaryContent>
-        <BeneficiaryContent></BeneficiaryContent>
+        <BeneficiariesDetailsContianer>
+          <BeneficiaryContent>
+            <BeneficiaryContentKey>Name:</BeneficiaryContentKey>{" "}
+            {currBeneficiary.name}
+          </BeneficiaryContent>
+          <BeneficiaryContent>
+            <BeneficiaryContentKey>Bank Name:</BeneficiaryContentKey>{" "}
+            {currBeneficiary.bankName}
+          </BeneficiaryContent>
+          <BeneficiaryContent>
+            <BeneficiaryContentKey>Account Number:</BeneficiaryContentKey>{" "}
+            {currBeneficiary.accountNumber}
+          </BeneficiaryContent>
+          <BeneficiaryContent>
+            <BeneficiaryContentKey>Account Type:</BeneficiaryContentKey>{" "}
+            {config.enumAccountMapping[currBeneficiary.accountType].text}
+          </BeneficiaryContent>
+        </BeneficiariesDetailsContianer>
       </BeneficiariesContainer>
     </ViewBeneficiaryWrapper>
   ) : null;
