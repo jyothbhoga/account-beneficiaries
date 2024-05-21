@@ -1,6 +1,7 @@
 const config = {};
 config.BASE_DOMAIN = "/";
 config.IMG_BASE = "/assets/images/";
+config.noBeneficiary = false;
 
 config.enumValidationChar = 2;
 config.enumStaticUrls = {

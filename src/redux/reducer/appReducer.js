@@ -1,3 +1,4 @@
+import config from "../../common/config";
 import {
   OBJ_ADD_EDIT_BENEFICIARY,
   OBJ_FETCH_BENEFICIARIES,
@@ -66,6 +67,10 @@ const appReducer = (state = initialState, action) => {
       const beneficiariesArr = beneficiariesData.data.filter(
         (obj) => obj.id !== payload
       );
+
+      if (beneficiariesArr.length === 0) {
+        config.noBeneficiary = true;
+      }
 
       return {
         ...state,

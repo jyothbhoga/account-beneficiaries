@@ -32,13 +32,19 @@ const ViewBenificiary = memo((props) => {
       );
       setCurrBeneficiary(currBenefT);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return currBeneficiary ? (
     <ViewBeneficiaryWrapper>
       <BeneficiariesContainer>
         <Header>
+          <Button
+            className="header-btn left"
+            onClick={() => navigate(`/${config.enumStaticUrls.manage}`)}
+          >
+            Edit
+          </Button>
           <Button
             className="header-btn"
             onClick={() =>

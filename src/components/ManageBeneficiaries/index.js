@@ -14,16 +14,9 @@ import toast, { Toaster } from "react-hot-toast";
 import Popup from "../../common/Popup";
 
 const ManageBeneficiaries = memo((props) => {
-  const {
-    fetchBeneficiaries,
-    beneficiariesData,
-    objToast,
-    showToast,
-    objPopup,
-  } = props;
+  const { fetchBeneficiaries, objToast, showToast, objPopup } = props;
   useEffect(() => {
-    !beneficiariesData?.data?.length && fetchBeneficiaries();
-    console.log(beneficiariesData.data);
+    !config.noBeneficiary && fetchBeneficiaries();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -58,7 +51,6 @@ const ManageBeneficiaries = memo((props) => {
 
 const mapStateToProps = (state) => {
   return {
-    beneficiariesData: state.appReducer.beneficiariesData,
     objToast: state.appReducer.objToast,
     objPopup: state.appReducer.objPopup,
   };
