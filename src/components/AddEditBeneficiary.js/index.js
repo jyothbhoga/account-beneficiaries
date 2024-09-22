@@ -107,7 +107,7 @@ const AddEditBeneficiary = memo((props) => {
       msg: `Are you sure you want to ${
         isEdit ? "edit" : "add"
       } this beneficiary?`,
-      header: "Delete Beneficiary",
+      header: `${isEdit ? "Edit" : "Add"} Beneficiary`,
       action: onSubmit,
       primaryText: isEdit ? "Save" : "Add",
     });

@@ -45,7 +45,7 @@ const ViewBenificiary = memo((props) => {
             className="header-btn left"
             onClick={() => navigate(`/${config.enumStaticUrls.manage}`)}
           >
-            Edit
+            Back
           </Button>
           <Button
             className="header-btn"
